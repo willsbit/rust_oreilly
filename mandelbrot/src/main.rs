@@ -1,8 +1,9 @@
-extern crate core;
-
 use num::Complex;
 use std::str::FromStr;
-
+use image::ColorType;
+use image::png::PNGEncoder;
+use std::fs::File;
+use std::io;
 // The Mandelbrot set is defined as the set of complex numbers c
 // for which z does not fly out to infinity.
 
@@ -95,7 +96,7 @@ fn render(pixels: &mut [u8],
           upper_left: Complex<f64>,
           lower_right: Complex<f64>)
 {
-    assert!(pixels.len() == bounds.0 * bounds.1);
+    assert_eq!(pixels.len(), bounds.0 * bounds.1);
 
     for row in 0..bounds.1 {
         for column in 0..bounds.0 {
@@ -109,6 +110,20 @@ fn render(pixels: &mut [u8],
         }
     }
 }
+
+/// Write the buffer `pixels`, whose dimensions are given by `bounds`, to the
+/// file named `filename`.
+fn write_image(filename: &str, pixels: &[u8], bounds: (usize, usize)) -> Result<(), std::io::Error> {
+    let output = File::create(filename)?;
+    let encoder = PNGEncoder::new(output);
+
+    encoder.encode(&pixels,
+                   bounds.0 as u32, bounds.1 as u32,
+                    ColorType::Gray(8))?;
+
+    Ok(())
+}
+
 
 fn main() {
 }
