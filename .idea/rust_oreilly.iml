@@ -4,8 +4,10 @@
     <content url="file://$MODULE_DIR$">
       <sourceFolder url="file://$MODULE_DIR$/actix-gcd/src" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/mandelbrot/src" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/quickreplace/src" isTestSource="false" />
       <excludeFolder url="file://$MODULE_DIR$/actix-gcd/target" />
       <excludeFolder url="file://$MODULE_DIR$/mandelbrot/target" />
+      <excludeFolder url="file://$MODULE_DIR$/quickreplace/target" />
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
